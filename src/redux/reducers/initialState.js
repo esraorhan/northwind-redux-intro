@@ -3,5 +3,6 @@
 export default {
     currentCategory:{},
     categories:[],
-    products:[]
-} 
+    products:[],
+    cart:[]
+}

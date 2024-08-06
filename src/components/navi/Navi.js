@@ -9,6 +9,7 @@ import {
   NavLink,
   NavbarText,
 } from "reactstrap";
+import CartSummary from "../cart/CartSummary";
 // import CartSummary from "./CartSummary";
 export default class Navi extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export default class Navi extends Component {
                   GitHub
                 </NavLink>
               </NavItem>
+              <CartSummary/>
            {/* <CartSummary removeFromCart={this.props.removeFromCart} cart ={this.props.cart}/> */}
             </Nav>
             <NavbarText>Simple Text</NavbarText>

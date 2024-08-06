@@ -12,7 +12,6 @@ export function getCategoriesSuccess(categories) {
 export function getCategories() {
   //apiye bağlanma gibi , veritababnın a bağlanma gibi durumlarda redux thunk gibi bir yaoı çıkıyor.
   return function (dispatch) {
-    debugger;
     let url = "http://localhost:3000/categories";
     return fetch(url)
       .then((response) => response.json())

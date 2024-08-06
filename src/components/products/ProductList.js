@@ -1,9 +1,67 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Badge, Table,Button } from "reactstrap";
+import { bindActionCreators } from "redux";
+import * as productActions from "../../redux/actions/productActions";
 
-export default class ProductList extends Component {
+class ProductList extends Component {
+  componentDidMount() {
+    this.props.actions.getProducts();
+  }
+
   render() {
     return (
-      <div>ProductList</div>
-    )
+      <div>
+        <Badge color="warning">Products</Badge>
+        <Badge color="success">{this.props.currentCategory.categoryName}</Badge>
+        <Table>
+          <thead>
+          <tr >
+              <th>#</th>
+              <th>Ürün adı</th>
+              <th>Birim fiyat</th>
+              <th>Miktar</th>
+              <th>Stok</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          {this.props.products.map((p) => (
+              <tr  key={p.id}>
+                <th scope="row">
+                  {p.id}
+                </th>
+                <td>{p.productName}</td>
+                <td>{p.unitPrice}</td>
+                <td>{p.quantityPerUnit}</td>
+                <td>{p.unitsInStock}</td>
+                <td>
+                  <Button  color="info">Sepete Ekle</Button>
+                </td>
+              </tr>
+            ))}
+         
+          </tbody>
+        </Table>
+      </div>
+    );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    currentCategory: state.changeCategoryReducer,
+    products: state.productListReducer,
+  };
+}
+
+//bir asiyona bağlanmak için,aksiyonu proplara bağla
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: {
+      getProducts: bindActionCreators(productActions.getProducts, dispatch),
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductList);

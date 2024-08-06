@@ -1,6 +1,7 @@
 //başlangıç statelerini tutacak 
 
 export default {
-    currentCategory:{categoryName:"BEVERAGES"},
-    categories:[]
+    currentCategory:{},
+    categories:[],
+    products:[]
 } 

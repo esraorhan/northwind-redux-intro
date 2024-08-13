@@ -4,6 +4,7 @@ import Navi from "../navi/Navi";
 import Dashboard from "./Dashboard";
 import { Route, Routes } from "react-router-dom";
 import CartDetail from "../cart/CartDetail";
+import AddOrUpdateProduct from "../products/AddOrUpdateProduct";
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
       <Route path="/" exact Component={Dashboard} />
       <Route path="/product" exact Component={Dashboard} />
       <Route path="/cart" exact Component={CartDetail} />
+      <Route path="/saveproduct/:productId" exact Component={AddOrUpdateProduct} />
       </Routes>
     </Container>
     </div>

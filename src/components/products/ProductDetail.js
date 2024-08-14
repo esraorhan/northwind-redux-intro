@@ -1,7 +1,8 @@
 import React from "react";
 import TextInput from "../toolbox/TextInput";
+import SelectInput from "../toolbox/SelectInput";
 
-const ProductDetail = (categories, product, onSave, onChange) => {
+const ProductDetail = ({ categories, product, onSave, onChange }) => {
   return (
     <form onSubmit={onSave}>
       <h2>{product.id ? "Güncelle" : "Ekle"}</h2>
@@ -12,7 +13,40 @@ const ProductDetail = (categories, product, onSave, onChange) => {
         onChange={onChange}
         error="Hata"
       />
+      <SelectInput
+        name="categoryId"
+        label="Category"
+        value={product.categoryId || ""}
+        options={categories.map((category) => ({
+          value: category.id,
+          text: category.categoryName,
+        }))}
+        onChange={onChange}
+        defaultOption="Seçiniz"
+        error="hata"
+      />
 
+      <TextInput
+        name="unitPrice"
+        label="unit Price"
+        value={product.unitPrice}
+        onChange={onChange}
+        error="Hata"
+      />
+      <TextInput
+        name="quantityPerUnit"
+        label="Quantity Per Unit"
+        value={product.quantityPerUnit}
+        onChange={onChange}
+        error="Hata"
+      />
+      <TextInput
+        name="unitsInStock"
+        label="units In Stock"
+        value={product.unitsInStock}
+        onChange={onChange}
+        error="Hata"
+      />
       <button type="submit" className="btn btn-success">
         Save
       </button>

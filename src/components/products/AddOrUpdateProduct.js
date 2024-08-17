@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getCategories } from "../../redux/actions/categoryActions";
 import { saveProduct } from "../../redux/actions/productActions";
 import ProductDetail from "./ProductDetail";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from "react-router-dom";
 
 function AddOrUpdateProduct({
   products,
@@ -13,6 +13,7 @@ function AddOrUpdateProduct({
   ...props
 }) {
   const [product, setProduct] = useState({ ...props.product });
+  const [errors, setErrors] = useState({});
   const { productId } = useParams();
   const navigate = useNavigate();
 
@@ -32,6 +33,32 @@ function AddOrUpdateProduct({
       ...previousProduct,
       [name]: name === "categoryId" ? parseInt(value, 10) : value,
     }));
+
+    validate(name, value);
+  }
+
+  function validate(name, value) {
+    //   if(name==="productName" && value ===""){
+    //  setErrors((previousErrors) => ({
+    //     ...previousErrors,
+    //     productName: "Ürün ismi olmalıdr...",
+    //   }));
+    //   }else{
+    //     setErrors((previousErrors) => ({
+    //       ...previousErrors,
+    //       productName: "",
+    //     }));
+    //   }
+    const errorMessages = {
+      productName: value ? "" : "Ürün ismi olmalıdır...",
+      categoryId: value ? "" : "kategori seçmelisiniz...",
+      unitPrice : value ? "" : "Zorunlu alan ",
+      unitsInStock :value ? "" : "Zorunlu alan "
+    };
+    setErrors((previousErrors) => ({
+      ...previousErrors,
+      [name]: errorMessages[name],
+    }));
   }
 
   function handleSave(event) {
@@ -47,6 +74,7 @@ function AddOrUpdateProduct({
       categories={categories}
       onChange={handleChange}
       onSave={handleSave}
+      errors={errors}
     />
   );
 }

@@ -10,6 +10,7 @@ import {
   NavbarText,
 } from "reactstrap";
 import CartSummary from "../cart/CartSummary";
+import { Link } from "react-router-dom";
 // import CartSummary from "./CartSummary";
 export default class Navi extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class Navi extends Component {
     return (
       <div>
         <Navbar>
-          <NavbarBrand href="/">Northwind App</NavbarBrand>
+          <NavbarBrand>Northwind App</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="me-auto" navbar>
@@ -36,8 +37,8 @@ export default class Navi extends Component {
                 <NavLink href="/components/">Components</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
-                  GitHub
+                <NavLink>
+                  <Link to={"/saveproduct"}>ürün ekle</Link>
                 </NavLink>
               </NavItem>
               <CartSummary/>
